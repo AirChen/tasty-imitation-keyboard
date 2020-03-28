@@ -127,7 +127,7 @@ class KeyboardView: UIView {
         }
     }
     
-    func height(forOrientation orientation: UIInterfaceOrientation, withTopBanner: Bool) -> CGFloat {
+    static func height(forOrientation orientation: UIInterfaceOrientation, withTopBanner: Bool) -> CGFloat {
         let isPad = UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad
         
         // AB: consider re-enabling this when interfaceOrientation actually breaks
@@ -142,8 +142,7 @@ class KeyboardView: UIView {
         if isPad {
             canonicalPortraitHeight = 264
             canonicalLandscapeHeight = 352
-        }
-        else {
+        } else {
             canonicalPortraitHeight = orientation.isPortrait && actualScreenWidth >= 400 ? 226 : 216
             canonicalLandscapeHeight = 162
         }
@@ -420,6 +419,11 @@ class KeyboardView: UIView {
     // POPUP DELAY END //
     /////////////////////
     
+    convenience init(orientation: UIInterfaceOrientation) {
+        let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true))
+        self.init(frame:advanceFrame)
+    }
+    
     override init(frame: CGRect) {
         UserDefaults.standard.register(defaults: [
             kAutoCapitalization: true,
@@ -677,12 +681,11 @@ extension KeyboardView {
             orientation = delegate.orientation
         }
         
-        let orientationSavvyBounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.height(forOrientation: orientation, withTopBanner: false))
+        let orientationSavvyBounds = CGRect(x: 0, y: 0, width: self.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: false))
         
         if (lastLayoutBounds != nil && lastLayoutBounds == orientationSavvyBounds) {
             // do nothing
-        }
-        else {
+        } else {
             let uppercase = self.shiftState.uppercase()
             let characterUppercase = (UserDefaults.standard.bool(forKey: kSmallLowercase) ? uppercase : true)
             
@@ -714,7 +717,7 @@ extension KeyboardView {
             orientation = delegate.orientation
         }
         
-        self.keyboardHeight = self.height(forOrientation: orientation, withTopBanner: true)
+        self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
     }
     
     func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -729,7 +732,7 @@ extension KeyboardView {
             }
         }
         
-        self.keyboardHeight = self.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
+        self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
     }
     
     func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {

@@ -20,7 +20,7 @@ class KeyboardViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let rect = UIScreen.main.bounds
-        keyboardView = KeyboardView.init(frame: CGRect.init(x: 0, y: 0, width: rect.size.width, height: 240))
+        keyboardView = KeyboardView.init(orientation: self.interfaceOrientation)
         keyboardView?.keyboardDelegate = self
         
         textView.inputView = keyboardView
