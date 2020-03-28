@@ -8,6 +8,17 @@
 
 import UIKit
 
+let metrics: [String:Double] = [
+    "topBanner": 30
+]
+func metric(_ name: String) -> CGFloat { return CGFloat(metrics[name]!) }
+
+// TODO: move this somewhere else and localize
+let kAutoCapitalization = "kAutoCapitalization"
+let kPeriodShortcut = "kPeriodShortcut"
+let kKeyboardClicks = "kKeyboardClicks"
+let kSmallLowercase = "kSmallLowercase"
+
 class DefaultSettings: ExtraView, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView?
