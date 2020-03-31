@@ -12,34 +12,29 @@ class KeyboardViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
 
-    var keyboardView: KeyboardView?
+    let keyboardView: KeyboardView
+    
+    required init?(coder: NSCoder) {
+        keyboardView = KeyboardView.init(orientation: .portrait)
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        keyboardView = KeyboardView.init(orientation: self.interfaceOrientation)
-        keyboardView?.keyboardDelegate = self
-        
+        keyboardView.keyboardDelegate = self
         textView.inputView = keyboardView
+        textView.delegate = self
+        
+        self.keyboardView.loadView()
     }
 }
 
 extension KeyboardViewController {
-    override func loadView() {
-        super.loadView()
-        self.keyboardView?.loadView()
-    }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.keyboardView?.viewWillAppear(animated)
-//    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.keyboardView?.viewDidLayoutSubviews()
+        self.keyboardView.viewDidLayoutSubviews()
     }
 }
 
@@ -83,6 +78,6 @@ extension KeyboardViewController: KeyboardViewProtocel {
 
 extension KeyboardViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        keyboardView?.viewWillAppear(true)
+        keyboardView.viewWillAppear(true)
     }
 }

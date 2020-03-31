@@ -9,7 +9,7 @@
 import UIKit
 
 let metrics: [String:Double] = [
-    "topBanner": 30
+    "topBanner": 43
 ]
 func metric(_ name: String) -> CGFloat { return CGFloat(metrics[name]!) }
 

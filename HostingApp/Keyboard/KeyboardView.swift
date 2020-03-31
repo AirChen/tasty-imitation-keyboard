@@ -629,8 +629,7 @@ class KeyboardView: UIView {
     // a banner that sits in the empty space on top of the keyboard
     func createBanner() -> ExtraView? {
         // note that dark mode is not yet valid here, so we just put false for clarity
-        //return ExtraView(globalColors: self.dynamicType.globalColors, darkMode: false, solidColorMode: self.solidColorMode())
-        return nil
+        return InputAssistantView(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
     }
     
     // a settings view that replaces the keyboard when the settings button is pressed
@@ -704,6 +703,12 @@ extension KeyboardView {
     func loadView() {
         if let aBanner = self.createBanner() {
             aBanner.isHidden = true
+            
+            let inputView = aBanner as! InputAssistantView
+            inputView.leadingActions = [InputAssistantAction.init(image: UIImage.init(named: "open") ?? UIImage.init())]
+            inputView.delegate = self
+            inputView.dataSource = self
+            
             self.insertSubview(aBanner, belowSubview: self.forwardingView)
             self.bannerView = aBanner
         }
@@ -902,5 +907,25 @@ extension KeyboardView {
         DispatchQueue.global(qos: .default).async(execute: {
             AudioServicesPlaySystemSound(1104)
         })
+    }
+}
+
+extension KeyboardView: InputAssistantViewDelegate {
+    func inputAssistantView(_ inputAssistantView: InputAssistantView, didSelectSuggestionAtIndex index: Int) {
+        
+    }
+}
+
+extension KeyboardView: InputAssistantViewDataSource {
+    func textForEmptySuggestionsInInputAssistantView() -> String? {
+        return "No Data"
+    }
+    
+    func numberOfSuggestionsInInputAssistantView() -> Int {
+        return 3
+    }
+    
+    func inputAssistantView(_ inputAssistantView: InputAssistantView, nameForSuggestionAtIndex index: Int) -> String {
+        return "Ok"
     }
 }

@@ -22,7 +22,7 @@ public struct InputAssistantAction {
     }
 }
 
-public protocol InputAssistantViewDataSource: class {
+protocol InputAssistantViewDataSource: class {
     
     /// Text to display when there are no suggestions.
     func textForEmptySuggestionsInInputAssistantView() -> String?
@@ -35,14 +35,14 @@ public protocol InputAssistantViewDataSource: class {
 }
 
 /// Delegate to receive notifications about user actions in the input assistant view.
-public protocol InputAssistantViewDelegate: class {
+protocol InputAssistantViewDelegate: class {
     
     /// When the user taps on a suggestion
     func inputAssistantView(_ inputAssistantView: InputAssistantView, didSelectSuggestionAtIndex index: Int)
 }
 
 /// UIInputView that displays custom suggestions, as well as leading and trailing actions.
-open class InputAssistantView: UIInputView {
+class InputAssistantView: ExtraView {
     
     /// Actions to display on the leading side of the suggestions.
     public var leadingActions: [InputAssistantAction] = [] {
@@ -71,14 +71,15 @@ open class InputAssistantView: UIInputView {
     /// Collection view, with a horizontally scrolling set of suggestions.
     private let suggestionsCollectionView: InputAssistantCollectionView
     
-    public init() {
+    
+    public required init(globalColors: GlobalColors.Type?, darkMode: Bool, solidColorMode: Bool) {
         self.leadingStackView = UIStackView()
         self.trailingStackView = UIStackView()
         
         self.suggestionsCollectionView = InputAssistantCollectionView()
-        
-        super.init(frame: .init(origin: .zero, size: .init(width: 0, height: 55)), inputViewStyle: .default)
-        
+                
+        super.init(globalColors: globalColors, darkMode: darkMode, solidColorMode: solidColorMode)
+                
         self.suggestionsCollectionView.inputAssistantView = self
         self.suggestionsCollectionView.delegate = self
         
@@ -88,7 +89,7 @@ open class InputAssistantView: UIInputView {
             stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
             updateActions([], stackView)
         }
-
+        
         // suggestions stretch to fill
         suggestionsCollectionView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
@@ -97,7 +98,7 @@ open class InputAssistantView: UIInputView {
         containerStackView.alignment = .fill
         containerStackView.axis = .horizontal
         containerStackView.distribution = .equalCentering
-
+        
         // Stretch to fill bounds
         containerStackView.frame = self.bounds
         self.addSubview(containerStackView)
@@ -158,7 +159,7 @@ open class InputAssistantView: UIInputView {
         }
     }
 
-    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         updateActions(leadingActions, leadingStackView)
         updateActions(trailingActions, trailingStackView)
