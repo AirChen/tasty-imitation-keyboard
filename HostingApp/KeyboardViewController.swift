@@ -12,10 +12,10 @@ class KeyboardViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
 
-    let keyboardView: KeyboardView
+    let keyboardView: InputKeyboardView
     
     required init?(coder: NSCoder) {
-        keyboardView = KeyboardView.init(orientation: .portrait)
+        keyboardView = InputKeyboardView.init(orientation: .portrait)
         super.init(coder: coder)
     }
     
@@ -24,8 +24,11 @@ class KeyboardViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         keyboardView.keyboardDelegate = self
+        keyboardView.inputDelegate = self
         textView.inputView = keyboardView
         textView.delegate = self
+        
+        keyboardView.setInputItems(items: ["one", "two", "three", "four"])
         
         self.keyboardView.loadView()
     }
@@ -79,5 +82,11 @@ extension KeyboardViewController: KeyboardViewProtocel {
 extension KeyboardViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         keyboardView.viewWillAppear(true)
+    }
+}
+
+extension KeyboardViewController: InputKeyboardViewProtocol {
+    func inputKeyboardItemsClickedWithString(_ str: String) {
+        textView.insertText(str)
     }
 }

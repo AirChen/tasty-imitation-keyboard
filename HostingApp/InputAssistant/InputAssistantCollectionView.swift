@@ -21,11 +21,11 @@ class InputAssistantCollectionView: UICollectionView {
     
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: 100, height: 41)
+        layout.estimatedItemSize = CGSize(width: 100, height: 30)
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         super.init(frame: .zero, collectionViewLayout: layout)
 
         register(InputAssistantCollectionViewCell.self, forCellWithReuseIdentifier: "Suggestion")

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		077FC9FF2434A74700F527BE /* InputKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077FC9FE2434A74700F527BE /* InputKeyboardView.swift */; };
 		4EF16F9119D254E00076AFCB /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9019D254E00076AFCB /* Background.jpg */; };
 		4EF16F9619D255030076AFCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9319D255030076AFCB /* Images.xcassets */; };
 		4EF16F9819D255030076AFCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF16F9519D255030076AFCB /* ViewController.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		077FC9FE2434A74700F527BE /* InputKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputKeyboardView.swift; sourceTree = "<group>"; };
 		4E807D9319461D9000D875D1 /* HostingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EF16F9019D254E00076AFCB /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		4EF16F9219D254EA0076AFCB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				5A8DFA84242F74490059B81D /* ForwardingView.swift */,
 				5A8DFA85242F74490059B81D /* KeyboardKeyBackground.swift */,
 				5A8DFA86242F74490059B81D /* KeyboardView.swift */,
+				077FC9FE2434A74700F527BE /* InputKeyboardView.swift */,
 				5A8DFA88242F74490059B81D /* DefaultSettings.swift */,
 				5A8DFA89242F74490059B81D /* DefaultKeyboard.swift */,
 				5A8DFA8B242F74490059B81D /* Shapes.swift */,
@@ -271,6 +274,7 @@
 				5A905C8C2430C82400565F82 /* InputAssistantView.swift in Sources */,
 				5A8DFAA3242F74490059B81D /* KeyboardLayout.swift in Sources */,
 				4EF16F9819D255030076AFCB /* ViewController.swift in Sources */,
+				077FC9FF2434A74700F527BE /* InputKeyboardView.swift in Sources */,
 				5A8DFA95242F74490059B81D /* DirectionEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
