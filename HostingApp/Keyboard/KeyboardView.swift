@@ -420,7 +420,7 @@ class KeyboardView: UIView {
     /////////////////////
     
     convenience init(orientation: UIInterfaceOrientation) {
-        let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true))
+        let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true) + 34)
         self.init(frame:advanceFrame)
     }
     
@@ -696,7 +696,7 @@ extension KeyboardView {
         
         self.bannerView?.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: metric("topBanner"))
         
-        let newOrigin = CGPoint(x: 0, y: self.bounds.height - self.forwardingView.bounds.height)
+        let newOrigin = CGPoint(x: 0, y: metric("topBanner"))
         self.forwardingView.frame.origin = newOrigin
     }
     
@@ -716,7 +716,11 @@ extension KeyboardView {
             orientation = delegate.orientation
         }
         
-        self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
+        if #available(iOS 11.0, *) {
+            self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true) + 34
+        } else {            
+            self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
+        }
     }
     
     func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -731,7 +735,11 @@ extension KeyboardView {
             }
         }
         
-        self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
+        if #available(iOS 11.0, *) {
+            self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true) + 34
+        } else {
+            self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
+        }
     }
     
     func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
