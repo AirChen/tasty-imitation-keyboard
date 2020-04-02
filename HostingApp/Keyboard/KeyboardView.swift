@@ -148,8 +148,8 @@ class KeyboardView: UIView {
         }
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
-        
-        return CGFloat(orientation.isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
+        let bottomHeight: CGFloat = (withTopBanner ? (isNotchScreen ? 34 : 0) : 0)
+        return CGFloat(orientation.isPortrait ? canonicalPortraitHeight + topBannerHeight + bottomHeight: canonicalLandscapeHeight + topBannerHeight)
     }
     
     func setupKeys() {
@@ -419,8 +419,23 @@ class KeyboardView: UIView {
     // POPUP DELAY END //
     /////////////////////
     
+    static var isNotchScreen: Bool {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return false
+        }
+        
+        let size = UIScreen.main.bounds.size
+        let notchValue: Int = Int(size.width/size.height * 100)
+        
+        if 216 == notchValue || 46 == notchValue {
+            return true
+        }
+        
+        return false
+    }
+    
     convenience init(orientation: UIInterfaceOrientation) {
-        let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true) + 34)
+        let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true))
         self.init(frame:advanceFrame)
     }
     
@@ -715,12 +730,8 @@ extension KeyboardView {
         if let delegate = self.keyboardDelegate {
             orientation = delegate.orientation
         }
-        
-        if #available(iOS 11.0, *) {
-            self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true) + 34
-        } else {            
-            self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
-        }
+                
+        self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
     }
     
     func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
@@ -735,11 +746,7 @@ extension KeyboardView {
             }
         }
         
-        if #available(iOS 11.0, *) {
-            self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true) + 34
-        } else {
-            self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
-        }
+        self.keyboardHeight = KeyboardView.height(forOrientation: toInterfaceOrientation, withTopBanner: true)
     }
     
     func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
