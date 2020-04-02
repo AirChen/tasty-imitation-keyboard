@@ -148,8 +148,8 @@ class KeyboardView: UIView {
         }
         
         let topBannerHeight = (withTopBanner ? metric("topBanner") : 0)
-        
-        return CGFloat(orientation.isPortrait ? canonicalPortraitHeight + topBannerHeight : canonicalLandscapeHeight + topBannerHeight)
+        let bottomHeight: CGFloat = (withTopBanner ? (isNotchScreen ? 34 : 0) : 0)
+        return CGFloat(orientation.isPortrait ? canonicalPortraitHeight + topBannerHeight + bottomHeight: canonicalLandscapeHeight + topBannerHeight)
     }
     
     func setupKeys() {
@@ -419,6 +419,21 @@ class KeyboardView: UIView {
     // POPUP DELAY END //
     /////////////////////
     
+    static var isNotchScreen: Bool {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return false
+        }
+        
+        let size = UIScreen.main.bounds.size
+        let notchValue: Int = Int(size.width/size.height * 100)
+        
+        if 216 == notchValue || 46 == notchValue {
+            return true
+        }
+        
+        return false
+    }
+    
     convenience init(orientation: UIInterfaceOrientation) {
         let advanceFrame = CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: KeyboardView.height(forOrientation: orientation, withTopBanner: true))
         self.init(frame:advanceFrame)
@@ -628,8 +643,7 @@ class KeyboardView: UIView {
     
     // a banner that sits in the empty space on top of the keyboard
     func createBanner() -> ExtraView? {
-        // note that dark mode is not yet valid here, so we just put false for clarity
-        //return ExtraView(globalColors: self.dynamicType.globalColors, darkMode: false, solidColorMode: self.solidColorMode())
+        // note that dark mode is not yet valid here, so we just put false for clarity        
         return nil
     }
     
@@ -697,13 +711,13 @@ extension KeyboardView {
         
         self.bannerView?.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: metric("topBanner"))
         
-        let newOrigin = CGPoint(x: 0, y: self.bounds.height - self.forwardingView.bounds.height)
+        let newOrigin = CGPoint(x: 0, y: metric("topBanner"))
         self.forwardingView.frame.origin = newOrigin
     }
     
     func loadView() {
         if let aBanner = self.createBanner() {
-            aBanner.isHidden = true
+            aBanner.isHidden = true            
             self.insertSubview(aBanner, belowSubview: self.forwardingView)
             self.bannerView = aBanner
         }
@@ -716,7 +730,7 @@ extension KeyboardView {
         if let delegate = self.keyboardDelegate {
             orientation = delegate.orientation
         }
-        
+                
         self.keyboardHeight = KeyboardView.height(forOrientation: orientation, withTopBanner: true)
     }
     
