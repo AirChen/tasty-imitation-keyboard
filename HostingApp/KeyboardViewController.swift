@@ -75,7 +75,7 @@ extension KeyboardViewController: KeyboardViewProtocel {
     }
     
     var orientation: UIInterfaceOrientation {
-        return self.interfaceOrientation
+        return self.preferredInterfaceOrientationForPresentation
     }
 }
 

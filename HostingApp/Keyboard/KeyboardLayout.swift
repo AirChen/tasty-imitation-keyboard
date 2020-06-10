@@ -230,18 +230,18 @@ class GlobalColors: NSObject {
 //"blueShadowColor": UIColor(hue: (216/360.0), saturation: 0.05, brightness: 0.43, alpha: 1),
 
 extension CGRect: Hashable {
-    public var hashValue: Int {
-        get {
-            return (origin.x.hashValue ^ origin.y.hashValue ^ size.width.hashValue ^ size.height.hashValue)
-        }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(origin.x)
+        hasher.combine(origin.y)
+        hasher.combine(size.width)
+        hasher.combine(size.height)
     }
 }
 
 extension CGSize: Hashable {
-    public var hashValue: Int {
-        get {
-            return (width.hashValue ^ height.hashValue)
-        }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(width)
+        hasher.combine(height)
     }
 }
 
@@ -610,7 +610,7 @@ class KeyboardLayout: NSObject, KeyboardKeyProtocol {
                 }
             }
             
-            let id = "p\(p)r\(r)k\(k)"
+            let id = "p\(String(describing: p))r\(String(describing: r))k\(String(describing: k))"
             if let key = self.nonPooledMap[id] {
                 return key
             }

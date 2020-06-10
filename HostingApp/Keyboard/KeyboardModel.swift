@@ -118,7 +118,6 @@ class Key: Hashable {
         }
     }
     
-    // TODO: this is kind of a hack
     var hashValue: Int
     
     init(_ type: KeyType) {
@@ -163,6 +162,6 @@ class Key: Hashable {
     }
 }
 
-func ==(lhs: Key, rhs: Key) -> Bool {
+func == (lhs: Key, rhs: Key) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
