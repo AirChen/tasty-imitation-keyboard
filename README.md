@@ -19,6 +19,7 @@ This keyboard is currently optimized for iPhone. iPad should work, but it'll loo
 * Dark mode and solid color mode.
 * Surpport iPhoneX Serical Screen.
 * Used for UITextField and UITextView as inputView.
+* Advanced ExtraView could add leading 、 trailing actions and input suggestions. 
 
 ## Usage
 
@@ -39,6 +40,22 @@ Then, run the following command:
 
 ```
 $ pod install
+```
+You just create KeyboardView instance like InputKeyboardView instance, and signed to UITextField's or UITextView's inputView. You also could append leading or trailing actions or input suggestions for top banner.
+
+```
+    keyboardView = InputKeyboardView.init(orientation: .portrait)
+    keyboardView.keyboardDelegate = self
+    keyboardView.inputDelegate = self
+    textView.inputView = keyboardView
+    textView.delegate = self
+    
+    keyboardView.loadView()
+    
+    // add date must after loadView!
+    keyboardView.appendLeadingAction(image: UIImage.init(named: "gear") ?? UIImage.init(), target: self, action: #selector(openAction))
+    keyboardView.appendTrailingAction(image: UIImage.init(named: "open") ?? UIImage.init(), target: self, action: #selector(openAction))
+    keyboardView.setInputItems(items: ["one", "two", "three", "four"])
 ```
 
 ## Learning Goals

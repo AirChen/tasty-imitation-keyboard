@@ -11,7 +11,6 @@
 		077FCA012434AFA500F527BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 077FCA002434AFA500F527BE /* LaunchScreen.storyboard */; };
 		4EF16F9119D254E00076AFCB /* Background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9019D254E00076AFCB /* Background.jpg */; };
 		4EF16F9619D255030076AFCB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9319D255030076AFCB /* Images.xcassets */; };
-		4EF16F9819D255030076AFCB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF16F9519D255030076AFCB /* ViewController.swift */; };
 		4EF16F9B19D2550D0076AFCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF16F9A19D2550D0076AFCB /* AppDelegate.swift */; };
 		4EF16F9F19D2552E0076AFCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EF16F9D19D2552E0076AFCB /* Main.storyboard */; };
 		5A8DFA76242F38B40059B81D /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DFA75242F38B40059B81D /* KeyboardViewController.swift */; };
@@ -74,7 +73,6 @@
 		4EF16F9019D254E00076AFCB /* Background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background.jpg; sourceTree = "<group>"; };
 		4EF16F9219D254EA0076AFCB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4EF16F9319D255030076AFCB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4EF16F9519D255030076AFCB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4EF16F9A19D2550D0076AFCB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EF16F9E19D2552E0076AFCB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		5A8DFA75242F38B40059B81D /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 			isa = PBXGroup;
 			children = (
 				4EF16F9A19D2550D0076AFCB /* AppDelegate.swift */,
-				4EF16F9519D255030076AFCB /* ViewController.swift */,
 				5A8DFA75242F38B40059B81D /* KeyboardViewController.swift */,
 				5A905C892430C82400565F82 /* InputAssistant */,
 				5A8DFA79242F74490059B81D /* Keyboard */,
@@ -276,7 +273,6 @@
 				5A8DFA76242F38B40059B81D /* KeyboardViewController.swift in Sources */,
 				5A905C8C2430C82400565F82 /* InputAssistantView.swift in Sources */,
 				5A8DFAA3242F74490059B81D /* KeyboardLayout.swift in Sources */,
-				4EF16F9819D255030076AFCB /* ViewController.swift in Sources */,
 				077FC9FF2434A74700F527BE /* InputKeyboardView.swift in Sources */,
 				5A8DFA95242F74490059B81D /* DirectionEnum.swift in Sources */,
 			);

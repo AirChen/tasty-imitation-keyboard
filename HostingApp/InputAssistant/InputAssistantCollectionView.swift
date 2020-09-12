@@ -21,7 +21,7 @@ class InputAssistantCollectionView: UICollectionView {
     
     init() {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: 100, height: 30)
+        layout.estimatedItemSize = CGSize(width: 70, height: 20)
         layout.itemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 10
@@ -125,8 +125,8 @@ private class InputAssistantCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             label.widthAnchor.constraint(greaterThanOrEqualToConstant: 50)
         ])
         

@@ -28,16 +28,29 @@ class KeyboardViewController: UIViewController {
         textView.inputView = keyboardView
         textView.delegate = self
         
-        keyboardView.setInputItems(items: ["one", "two", "three", "four"])
+        keyboardView.loadView()
         
-        self.keyboardView.loadView()
+        // add date must after loadView!
+        keyboardView.appendLeadingAction(image: UIImage.init(named: "gear") ?? UIImage.init(), target: self, action: #selector(openAction))
+        keyboardView.appendTrailingAction(image: UIImage.init(named: "open") ?? UIImage.init(), target: self, action: #selector(openAction))
+        keyboardView.setInputItems(items: ["one", "two", "three", "four"])
+    }
+    
+    @objc func openAction() {
+        print("open action");
     }
 }
 
 extension KeyboardViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.keyboardView.viewDidLayoutSubviews()
+        keyboardView.viewDidLayoutSubviews()
+    }
+}
+
+extension KeyboardViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        keyboardView.viewWillAppear(true)
     }
 }
 
@@ -76,12 +89,6 @@ extension KeyboardViewController: KeyboardViewProtocel {
     
     var orientation: UIInterfaceOrientation {
         return self.preferredInterfaceOrientationForPresentation
-    }
-}
-
-extension KeyboardViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        keyboardView.viewWillAppear(true)
     }
 }
 

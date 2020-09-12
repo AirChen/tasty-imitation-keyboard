@@ -120,44 +120,6 @@ class InputAssistantView: ExtraView {
             }
         }
     }
-    private var keyboardAppearanceObserver: NSKeyValueObservation?
-
-    /// Attach the inputAssistant to the given UITextView.
-    public func attach(to textInput: UITextView) {
-        self.keyboardAppearance = textInput.keyboardAppearance
-
-        // Hide default undo/redo/etc buttons
-        textInput.inputAssistantItem.leadingBarButtonGroups = []
-        textInput.inputAssistantItem.trailingBarButtonGroups = []
-
-        // Disable built-in autocomplete
-        textInput.autocorrectionType = .no
-
-        // Add the input assistant view as an accessory view
-        textInput.inputAccessoryView = self
-
-        keyboardAppearanceObserver = textInput.observe(\UITextView.keyboardAppearance) { [weak self] textInput, _ in
-            self?.keyboardAppearance = textInput.keyboardAppearance
-        }
-    }
-    /// Attach the inputAssistant to the given UITextView.
-    public func attach(to textInput: UITextField) {
-        self.keyboardAppearance = textInput.keyboardAppearance
-
-        // Hide default undo/redo/etc buttons
-        textInput.inputAssistantItem.leadingBarButtonGroups = []
-        textInput.inputAssistantItem.trailingBarButtonGroups = []
-
-        // Disable built-in autocomplete
-        textInput.autocorrectionType = .no
-
-        // Add the input assistant view as an accessory view
-        textInput.inputAccessoryView = self
-
-        keyboardAppearanceObserver = textInput.observe(\UITextField.keyboardAppearance) { [weak self] textInput, _ in
-            self?.keyboardAppearance = textInput.keyboardAppearance
-        }
-    }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

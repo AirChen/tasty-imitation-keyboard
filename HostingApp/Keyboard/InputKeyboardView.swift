@@ -19,7 +19,6 @@ class InputKeyboardView: KeyboardView {
     
     override func createBanner() -> ExtraView? {        
         let banner = InputAssistantView(globalColors: type(of: self).globalColors, darkMode: false, solidColorMode: self.solidColorMode())
-        banner.trailingActions = [InputAssistantAction.init(image: UIImage.init(named: "open") ?? UIImage.init())]
         banner.delegate = self
         banner.dataSource = self
         
@@ -31,7 +30,17 @@ class InputKeyboardView: KeyboardView {
         self.items.append(contentsOf: items)
         
         let banner = self.bannerView as! InputAssistantView?
-        banner?.reloadData()        
+        banner?.reloadData()
+    }
+    
+    func appendTrailingAction(image: UIImage, target: AnyObject? = nil, action: Selector? = nil) {
+        let banner = self.bannerView as! InputAssistantView?
+        banner?.trailingActions.append(InputAssistantAction.init(image: image, target: target, action: action))
+    }
+    
+    func appendLeadingAction(image: UIImage, target: AnyObject? = nil, action: Selector? = nil) {
+        let banner = self.bannerView as! InputAssistantView?
+        banner?.leadingActions.append(InputAssistantAction.init(image: image, target: target, action: action))
     }
 }
 
