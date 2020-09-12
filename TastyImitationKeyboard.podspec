@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "TastyImitationKeyboard"
-  spec.version      = "0.0.1"
+  spec.version      = "0.1.2"
   spec.summary      = "A custom keyboard that serves as a tasty imitation of the default Apple keyboard. Built using Swift and the latest Apple technologies!"
   spec.homepage     = "http://blog.airchen-space.top/"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -45,7 +45,7 @@ Pod::Spec.new do |spec|
   spec.author             = { "airchen" => "renzhichen2012@163.com" }
   # Or just: spec.author    = "airchen"
   # spec.authors            = { "airchen" => "renzhichen2012@163.com" }
-  # spec.social_media_url   = "https://twitter.com/airchen"
+  spec.social_media_url   = "https://github.com/AirChen"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
